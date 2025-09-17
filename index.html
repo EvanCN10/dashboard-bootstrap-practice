@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     
     <style>
+        /* CSS yang sudah ada sebelumnya */
         body {
             background-color: #f8f9fa;
         }
@@ -16,9 +17,11 @@
             border-radius: 0.5rem;
             box-shadow: 0 0.15rem 1.75rem 0 rgba(58, 59, 69, 0.15);
             transition: all 0.3s;
+            cursor: pointer;
         }
         .card:hover {
             transform: translateY(-5px);
+            box-shadow: 0 0.5rem 1.75rem 0 rgba(58, 59, 69, 0.25);
         }
         .text-xs {
             font-size: 0.8rem;
@@ -28,6 +31,39 @@
         .border-left-info   { border-left: 0.25rem solid #36b9cc !important; }
         .border-left-warning{ border-left: 0.25rem solid #f6c23e !important; }
         .border-left-danger { border-left: 0.25rem solid #e74a3b !important; }
+
+        /* KODE CSS BARU UNTUK EFEK HOVER DESKRIPSI */
+        .card-body {
+            position: relative;
+            overflow: hidden;
+            padding: 1.25rem;
+        }
+        .card-content {
+            transition: opacity 0.3s ease-in-out;
+        }
+        .card-description {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(255, 255, 255, 0.98);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 15px;
+            text-align: center;
+            opacity: 0; /* Sembunyikan secara default */
+            transition: opacity 0.3s ease-in-out;
+            font-size: 0.9rem;
+            color: #5a5c69;
+        }
+        .card:hover .card-content {
+            opacity: 0; /* Sembunyikan konten asli saat hover */
+        }
+        .card:hover .card-description {
+            opacity: 1; /* Tampilkan deskripsi saat hover */
+        }
     </style>
 </head>
 <body>
@@ -37,47 +73,72 @@
         
         <div class="row">
             <div class="col-lg-2 col-md-4 mb-4">
-                <div class="card border-left-primary h-100 py-2">
+                <div class="card border-left-primary h-100">
                     <div class="card-body">
-                        <div class="text-xs fw-bold text-primary text-uppercase mb-1">KELEMBABAN (RH%)</div>
-                        <div class="h5 mb-0 fw-bold">54 %</div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-2 col-md-4 mb-4">
-                <div class="card border-left-success h-100 py-2">
-                    <div class="card-body">
-                        <div class="text-xs fw-bold text-success text-uppercase mb-1">TDS</div>
-                        <div class="h5 mb-0 fw-bold">400 ppm</div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-2 col-md-4 mb-4">
-                <div class="card border-left-info h-100 py-2">
-                    <div class="card-body">
-                        <div class="text-xs fw-bold text-info text-uppercase mb-1">KEKERUHAN (TURBID)</div>
-                        <div class="d-flex align-items-center">
-                            <div class="h5 mb-0 fw-bold me-3">18 NTU</div>
-                            <div class="progress flex-grow-1" style="height: 10px;">
-                                <div class="progress-bar bg-info" role="progressbar" style="width: 18%" aria-valuenow="18" aria-valuemin="0" aria-valuemax="100"></div>
-                            </div>
+                        <div class="card-content">
+                            <div class="text-xs fw-bold text-primary text-uppercase mb-1">KELEMBABAN (RH%)</div>
+                            <div class="h5 mb-0 fw-bold">54 %</div>
+                        </div>
+                        <div class="card-description">
+                            <p class="mb-0">Menunjukkan tingkat kelembaban udara relatif saat ini.</p>
                         </div>
                     </div>
                 </div>
             </div>
             <div class="col-lg-2 col-md-4 mb-4">
-                <div class="card border-left-warning h-100 py-2">
+                <div class="card border-left-success h-100">
                     <div class="card-body">
-                        <div class="text-xs fw-bold text-warning text-uppercase mb-1">TEMPERATUR AIR (WTEMP)</div>
-                        <div class="h5 mb-0 fw-bold">25 C</div>
+                        <div class="card-content">
+                            <div class="text-xs fw-bold text-success text-uppercase mb-1">TDS</div>
+                            <div class="h5 mb-0 fw-bold">400 ppm</div>
+                        </div>
+                        <div class="card-description">
+                           <p class="mb-0">Mengukur total padatan terlarut (Total Dissolved Solids) dalam air.</p>
+                        </div>
                     </div>
                 </div>
             </div>
             <div class="col-lg-2 col-md-4 mb-4">
-                <div class="card border-left-danger h-100 py-2">
+                <div class="card border-left-info h-100">
                     <div class="card-body">
-                        <div class="text-xs fw-bold text-danger text-uppercase mb-1">ALIRAN AIR (WFLOW)</div>
-                        <div class="h5 mb-0 fw-bold">34</div>
+                        <div class="card-content">
+                            <div class="text-xs fw-bold text-info text-uppercase mb-1">KEKERUHAN (TURBID)</div>
+                            <div class="d-flex align-items-center">
+                                <div class="h5 mb-0 fw-bold me-3">18 NTU</div>
+                                <div class="progress flex-grow-1" style="height: 10px;">
+                                    <div class="progress-bar bg-info" role="progressbar" style="width: 18%"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-description">
+                            <p class="mb-0">Mengukur tingkat kejernihan atau kekeruhan air.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-2 col-md-4 mb-4">
+                <div class="card border-left-warning h-100">
+                    <div class="card-body">
+                        <div class="card-content">
+                            <div class="text-xs fw-bold text-warning text-uppercase mb-1">TEMPERATUR AIR (WTEMP)</div>
+                            <div class="h5 mb-0 fw-bold">25 C</div>
+                        </div>
+                        <div class="card-description">
+                           <p class="mb-0">Suhu air saat ini, parameter penting untuk biota air.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-2 col-md-4 mb-4">
+                <div class="card border-left-danger h-100">
+                    <div class="card-body">
+                        <div class="card-content">
+                            <div class="text-xs fw-bold text-danger text-uppercase mb-1">ALIRAN AIR (WFLOW)</div>
+                            <div class="h5 mb-0 fw-bold">34</div>
+                        </div>
+                        <div class="card-description">
+                            <p class="mb-0">Menunjukkan debit atau laju aliran air dalam sistem.</p>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -85,47 +146,72 @@
         
         <div class="row">
             <div class="col-lg-2 col-md-4 mb-4">
-                <div class="card border-left-primary h-100 py-2">
+                <div class="card border-left-primary h-100">
                     <div class="card-body">
-                        <div class="text-xs fw-bold text-primary text-uppercase mb-1">OKSIGEN TERLARUT (DISS.OXYGEN)</div>
-                        <div class="h5 mb-0 fw-bold">10 ppm</div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-2 col-md-4 mb-4">
-                <div class="card border-left-success h-100 py-2">
-                    <div class="card-body">
-                        <div class="text-xs fw-bold text-success text-uppercase mb-1">INTENSITAS CAHAYA (LUX)</div>
-                        <div class="h5 mb-0 fw-bold">100 Lux</div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-2 col-md-4 mb-4">
-                <div class="card border-left-info h-100 py-2">
-                    <div class="card-body">
-                        <div class="text-xs fw-bold text-info text-uppercase mb-1">TEMPERATUR UDARA (AMTEMP)</div>
-                        <div class="d-flex align-items-center">
-                            <div class="h5 mb-0 fw-bold me-3">34 C</div>
-                            <div class="progress flex-grow-1" style="height: 10px;">
-                                <div class="progress-bar bg-info" role="progressbar" style="width: 34%" aria-valuenow="34" aria-valuemin="0" aria-valuemax="100"></div>
-                            </div>
+                        <div class="card-content">
+                            <div class="text-xs fw-bold text-primary text-uppercase mb-1">OKSIGEN TERLARUT</div>
+                            <div class="h5 mb-0 fw-bold">10 ppm</div>
+                        </div>
+                        <div class="card-description">
+                           <p class="mb-0">Kadar oksigen (Dissolved Oxygen) yang larut di dalam air.</p>
                         </div>
                     </div>
                 </div>
             </div>
             <div class="col-lg-2 col-md-4 mb-4">
-                <div class="card border-left-warning h-100 py-2">
+                <div class="card border-left-success h-100">
                     <div class="card-body">
-                        <div class="text-xs fw-bold text-warning text-uppercase mb-1">EC</div>
-                        <div class="h5 mb-0 fw-bold">2</div>
+                        <div class="card-content">
+                            <div class="text-xs fw-bold text-success text-uppercase mb-1">INTENSITAS CAHAYA (LUX)</div>
+                            <div class="h5 mb-0 fw-bold">100 Lux</div>
+                        </div>
+                        <div class="card-description">
+                           <p class="mb-0">Tingkat pencahayaan yang diterima oleh sensor tanaman.</p>
+                        </div>
                     </div>
                 </div>
             </div>
             <div class="col-lg-2 col-md-4 mb-4">
-                <div class="card border-left-danger h-100 py-2">
+                <div class="card border-left-info h-100">
                     <div class="card-body">
-                        <div class="text-xs fw-bold text-danger text-uppercase mb-1">PH</div>
-                        <div class="h5 mb-0 fw-bold">7.1</div>
+                        <div class="card-content">
+                            <div class="text-xs fw-bold text-info text-uppercase mb-1">TEMPERATUR UDARA</div>
+                            <div class="d-flex align-items-center">
+                                <div class="h5 mb-0 fw-bold me-3">34 C</div>
+                                <div class="progress flex-grow-1" style="height: 10px;">
+                                    <div class="progress-bar bg-info" role="progressbar" style="width: 34%"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-description">
+                            <p class="mb-0">Suhu udara (Ambient Temp) di sekitar area pertanian.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-2 col-md-4 mb-4">
+                <div class="card border-left-warning h-100">
+                    <div class="card-body">
+                        <div class="card-content">
+                            <div class="text-xs fw-bold text-warning text-uppercase mb-1">EC</div>
+                            <div class="h5 mb-0 fw-bold">2</div>
+                        </div>
+                        <div class="card-description">
+                            <p class="mb-0">Mengukur konduktivitas listrik (Electrical Conductivity) air.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-2 col-md-4 mb-4">
+                <div class="card border-left-danger h-100">
+                    <div class="card-body">
+                        <div class="card-content">
+                            <div class="text-xs fw-bold text-danger text-uppercase mb-1">PH</div>
+                            <div class="h5 mb-0 fw-bold">7.1</div>
+                        </div>
+                        <div class="card-description">
+                            <p class="mb-0">Mengukur tingkat keasaman atau kebasaan air.</p>
+                        </div>
                     </div>
                 </div>
             </div>
