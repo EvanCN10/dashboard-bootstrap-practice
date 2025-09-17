@@ -85,3 +85,21 @@ Untuk kartu seperti "Kekeruhan", ikon digantikan dengan komponen `progress` dari
     <div class="progress-bar bg-info" role="progressbar" style="width: 18%"></div>
 </div>
 ```
+
+# Update 1.0 🔥
+-   **Struktur HTML Baru**:
+    Setiap `.card-body` kini memiliki dua `div` di dalamnya:
+    1.  `<div class="card-content">`: Untuk membungkus konten asli (judul dan nilai sensor).
+    2.  `<div class="card-description">`: Untuk membungkus teks deskripsi yang awalnya disembunyikan.
+
+    ```html
+    <div class="card-body">
+        <div class="card-content">...</div>
+        <div class="card-description">...</div>
+    </div>
+    ```
+
+-   **Logika CSS**:
+    -   Kelas `.card-description` diberi `opacity: 0` (transparan/tersembunyi) dan `position: absolute` (melayang di atas konten asli).
+    -   Saat `.card` di-hover (`.card:hover`), kita mengubah `opacity` pada `.card-description` menjadi `1` (terlihat) dan `opacity` pada `.card-content` menjadi `0` (tersembunyi).
+    -   Properti `transition` digunakan pada kedua kelas tersebut untuk menciptakan efek animasi muncul/menghilang yang mulus.
